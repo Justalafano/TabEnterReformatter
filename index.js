@@ -10,78 +10,45 @@ jQuery(document).ready(function()
         let $answerField = $("#results1");
 
         //separate the rows of the SQL statement
-        var rowArray = uglySql.split("\n");
+        let rowArray = uglySql.split("\n");
         
         //iterate through each row saved in the rowArray
         //push the column value into an array of arrays
-        var columnArray = [];
+        let columnArray = [];
         for (let x of rowArray)
         {
             columnArray.push(x.split("\t"));
         }
-        console.table(columnArray);
-        let columnMax = [];
-        let cellValue = [];
-        let columnStringlength = [];
 
-        for (let row = 0; row < columnArray.length; row++)
-        {
-            //iterate through the total number of columns and push the .length of 
-            //each column value into the column1Stings array
-            for (let column = 0; column < columnArray[0].length; column++)
-            {
-                cellValue.push(columnArray[column][row]);
-                columnStringlength.push(cellValue[column].length);
-            }
-            // let maxCharPerColumn = Math.max.apply(null, columnStringlength);
-            let maxCharPerColumn = Math.max(...columnStringlength);//es6 spread operator
-            console.log('maxCharPerColumn' , maxCharPerColumn);
-            columnMax.push(maxCharPerColumn);
-            displayValueOutput(columnMax[row], cellValue[row]);
-            if (cellValue.length >= columnArray.length)
-            {
-                columnStringlength = [];
-                cellValue = [];
-            }
-        }
+        let lengthMap = {}
+        columnArray.forEach((row) => {
+            row.forEach((col, j) => {
+                // if the lengthMap doesn't have that key:value pair yet, or if the value is less than the current column length
+                if (lengthMap[j] == null || lengthMap[j] < col.length) {
+                    // create that key and set it's value to the length of the current column
+                    lengthMap[j] = col.length
+                }
+            })
+        })
 
-            //get the first element of array [0][0] and add whitespace up to the value columnMax[0] 
-            
-        function displayValueOutput(columnMax, cellValue)
-        {
-            let outputString = cellValue.toUpperCase();
-            
-            //Max string length to 25 chars
-            if (columnMax > 25)
-            {
-                outputString.subString(0, 25);
-                columnMax = 25;
-            }
-            
-            if (outputString.length == columnMax)
-            {
-                $answerField.append("<div>" + outputString + "_" + "</div>") 
-            
-                moveToNextColumnCheck();
-            }
-            else
-            {
-                addWhiteSpace(outputString , columnMax);
-            }
-        }
-        function addWhiteSpace(outputString, columnMax)
-        {
-            let numberOfSpacesToAdd = columnMax - outputString.length;
-            let spaces = "";
-            spaces = "&#95;".repeat(numberOfSpacesToAdd) + spaces;
-            let rightJustifiedValue = spaces + outputString;
-            $answerField.append("<div>" + rightJustifiedValue + "_" + "</div>") 
-
-            moveToNextColumnCheck();
-        }
-        function moveToNextColumnCheck()
-        {
-
-        }
+        let output = ``
+        columnArray.forEach((row) => {
+            row.forEach((col, j) => {
+                // don't include padding for the last column
+                if (j == row.length - 1) {
+                    output += col
+                }
+                else {
+                    // padEnd adds the specified character to the end of the string until the string is the specified length
+                    output += col.padEnd(lengthMap[j] + 1, '.')
+                }
+            })
+            output += '\n'
+        })
+        // could use a style.css file instead of inline styling here
+        // using es6 temlate literal string to insert the output instead of string concatenation
+        // using a text area instead of a div so the \n formatting renders without having to deal with
+        // adding <br> tags and other html formatting
+        $answerField.append(`<textarea style='width:30%;height:30vh'>${output}</textarea>`)
     })
 })
