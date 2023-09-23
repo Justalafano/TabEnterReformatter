@@ -15,7 +15,7 @@ after formatting:
 ```
 id	name	                zipcode	phone
 0	Bill	                90210	8585552485
-1	Columbus	            84101	9315552938
+1	Columbus	        84101	9315552938
 2	Sir Fredrick The Third	10011	8085553374
 3	Jane	                57493	9685551929
 4	Jimothy	                92106	2015552293
