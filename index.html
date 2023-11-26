@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>SQL Query Re-formatter</title>
+</head>
+
+<body>
+    <header>
+        <h1>SQL Query Re-formatter (Right Indent using spaces)</h1>
+    </header>
+    <form method="POST" id="formForUglySql">
+        <div>
+            <label for="usersSqlStatement">Your Ugly SQL Statement:</label>
+            <textarea id="usersSqlStatement" name="usersSqlStatement"></textarea>
+        </div>
+        <input type="submit">
+    </form>
+    <table id="results1"></table>
+    <div id="results"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
