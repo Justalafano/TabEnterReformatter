@@ -21,7 +21,8 @@ jQuery(document).ready(function()
             columnArray.push(x.split("\t"));
         }
         //SETS THE MAX CHARACTERS FOR A COLUMN
-        //let max = 25;
+        var characterArray = [];
+        let max = 25;
         //concatenate a code block and a table element at the beginning of the clipboard string so the formatting appears in ServiceNow
         let clipboardString = "[code]<table>";
         //iterate through each row
@@ -34,7 +35,7 @@ jQuery(document).ready(function()
             //iterate through each column of each row
             for (let z = 0; z < columnArray[y].length; z++)
             {
-                /* THIS CODE SETS A MAX AMOUNT OF CHARACTERS FOR A COLUMN
+                // THIS CODE SETS A MAX AMOUNT OF CHARACTERS FOR A COLUMN
                 characterArray.push(columnArray[y][z].split(''));
                 if (columnArray[y][z].length > max) {
                     let shortened = '';
@@ -42,7 +43,7 @@ jQuery(document).ready(function()
                         shortened += characterArray[(y*4)+z][w];
                         columnArray[y][z] = shortened; 
                     }
-                }*/
+                }
                 //if on the first row...
                 if (y == 0){
                     //concatenate a table header element to the clipboardString
