@@ -13,7 +13,7 @@ jQuery(document).ready(function()
         var rowArray = uglySql.split("\n");
         
         //iterate through each row saved in the rowArray
-        //push the column value into an array of arrays
+        //push the row value into an array of arrays
         var columnArray = [];
 
         const displayValueOutput = (columnMax, cellValue) => {
@@ -42,35 +42,34 @@ jQuery(document).ready(function()
         {
             columnArray.push(x.split("\t"));
         }
-        //console.table(columnArray);
 
         //determine the largest amount of characters appearing in each column
-        function calculateMaxOfEachColumn()
+
+        let columnMax = [];
+        let columnStringLength = [];
+        let maxCharPerColumn = [];
+        //iterate through each cell value for a column and insert the lengths into
+        // columnStingslengths array
+        for (let row = 0; row < columnArray[0].length; row++)
         {
-            //iterate through each cell value for a column and insert the lengths into
-            // columnStingslengths array
             for (let column = 0; column < columnArray.length; column++)
             {
-                for (let cell = 0; cell < columnArray[0].length; cell++)
-                {
-                    columnStringLength.push(columnArray[column][cell].length);
-                    console.log(columnStringLength);
-                }
+                columnStringLength.push(columnArray[column][row].length);
             }
-                // let maxCharPerColumn = Math.max.apply(null, columnStringLength);
-                let maxCharPerColumn = Math.max(...columnArray[]);//es6 spread operator
-               // console.log('maxCharPerColumn' , maxCharPerColumn);
-                columnMax.push(maxCharPerColumn);
-                displayValueOutput(columnMax[row], cellValue[row]);
+            maxCharPerColumn = Math.max(...columnStringLength);//es6 spread operator
+            columnMax.push(maxCharPerColumn);
+            maxCharPerColumn = [];
+            columnStringLength = [];
+        }
+        console.log(columnMax);
+        //Start here next. I have gotten the max amount of characters that would appear in each column.
+        //Use these values to start adjusting each column.
                 if (cellValue.length >= columnArray.length)
                 {
                     columnStringLength = [];
                     cellValue = [];
                 }
             
-        }
-        let columnMax = [];
-        let columnStringLength = [];
         
 
             //get the first element of array [0][0] and add whitespace up to the value columnMax[0] 
