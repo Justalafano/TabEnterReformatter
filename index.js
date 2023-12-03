@@ -30,7 +30,7 @@ jQuery(document).ready(function ()
             $("#results1").append("<tr>");
             console.log($("#results1"));
             //iterate through each column of each row
-            for (let z = 0; z < columnArray[y].length -1; z++)
+            for (let z = 0; z < columnArray[y].length; z++)
             {
                 /* THIS CODE SETS A MAX AMOUNT OF CHARACTERS FOR A COLUMN, uncomment this and the variables above
                 if you want to set a max amound of characters per column.
@@ -45,7 +45,7 @@ jQuery(document).ready(function ()
                 //if on the first row...
                 if (y == 0)
                 {
-                    clipboardString += "<th style='text-wrap:nowrap border:1px solid'>" + columnArray[y][z] + "</th>";
+                    clipboardString += "<th style='text-wrap:nowrap; border:1px solid'>" + columnArray[y][z] + "</th>";
                     $("#results1").append("<th style='text-wrap:nowrap'>" + columnArray[y][z] + "</th>");
                 }
                 //if not on the first row...
