@@ -45,14 +45,14 @@ jQuery(document).ready(function ()
                 //if on the first row...
                 if (y == 0)
                 {
-                    clipboardString += "<th style='text-wrap:nowrap; border:1px solid'>" + columnArray[y][z] + "</th>";
-                    $("#results1").append("<th style='text-wrap:nowrap'>" + columnArray[y][z] + "</th>");
+                    clipboardString += "<th style='text-wrap:nowrap; border:1px solid; text-align:center; font-weight: bold'>" + columnArray[y][z] + "</th>";
+                    $("#results1").append("<th style='text-wrap:nowrap; border:1px solid; text-align:center; font-weight:bold'>" + columnArray[y][z] + "</th>");
                 }
                 //if not on the first row...
                 if (y != 0)
                 {
                     clipboardString += "<td style='border:1px solid'>" + columnArray[y][z] + "</td>";
-                    $("#results1").append("<td>" + columnArray[y][z] + "</td>");
+                    $("#results1").append("<td style='border:1px solid'>" + columnArray[y][z] + "</td>");
                 }
             }
             clipboardString += "</tr>";
