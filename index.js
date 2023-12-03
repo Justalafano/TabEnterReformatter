@@ -17,8 +17,7 @@ jQuery(document).ready(function ()
         let max = 25;
         */
 
-        let clipboardString = "[code]<table>";
-
+        let clipboardString = "[code]<table style:'border 1px'>";
         //iterate through each row saved in the rowArray
         //push the row value into an array of arrays
         for (let x of rowArray)
@@ -29,6 +28,7 @@ jQuery(document).ready(function ()
         {
             clipboardString += "<tr>";
             $("#results1").append("<tr>");
+            console.log($("#results1"));
             //iterate through each column of each row
             for (let z = 0; z < columnArray[y].length; z++)
             {
