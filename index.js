@@ -24,6 +24,12 @@ jQuery(document).ready(function ()
         {
             columnArray.push(x.split("\t"));
         }
+        //SETS THE MAX CHARACTERS FOR A COLUMN
+        var characterArray = [];
+        let max = 25;
+        //concatenate a code block and a table element at the beginning of the clipboard string so the formatting appears in ServiceNow
+        let clipboardString = "[code]<table>";
+        //iterate through each row
         for (let y = 0; y < columnArray.length; y++) 
         {
             clipboardString += "<tr>";
@@ -43,17 +49,19 @@ jQuery(document).ready(function ()
                     }
                 }*/
                 //if on the first row...
-                if (y == 0)
-                {
-                    clipboardString += "<th style='text-wrap:nowrap; border:1px solid; text-align:center; font-weight: bold'>" + columnArray[y][z] + "</th>";
-                    $("#results1").append("<th style='text-wrap:nowrap; border:1px solid; text-align:center; font-weight:bold'>" + columnArray[y][z] + "</th>");
+                if (y == 0){
+                    //concatenate a table header element to the clipboardString
+                    clipboardString += "<th style='text-wrap:nowrap'>" + columnArray[y][z] + "</th>";
+                    //append a table header element to the results1 table element
+                    $("#results1").append("<th style='text-wrap:nowrap'>" + columnArray[y][z] + "</th>");
                 }
                 //if not on the first row...
-                if (y != 0)
-                {
-                    clipboardString += "<td style='border:1px solid'>" + columnArray[y][z] + "</td>";
-                    $("#results1").append("<td style='border:1px solid'>" + columnArray[y][z] + "</td>");
-                }
+                if (y != 0){
+                    //concatenate a table data cell element to the clipboardString
+                    clipboardString += "<td>" + columnArray[y][z] + "</td>";
+                    //append a table data cell element to the results1 table element
+                    $("#results1").append("<td>" + columnArray[y][z] + "</td>");
+                }   
             }
             clipboardString += "</tr>";
             $("#results1").append("</tr>");
