@@ -5,20 +5,15 @@ jQuery(document).ready(function ()
         event.preventDefault();
 
         let uglySql = $("#usersSqlStatement").val();
-
         //Separate the rows of the SQL statement by the new line special character.(CRLF)
-        var rowArray = uglySql.split("\n");
-
-        var columnArray = [];
-
+        let rowArray = uglySql.split("\n");
+        let columnArray = [];
+        let clipboardString = "[code]<table style='border:1px solid'>";
         /*
         Uncomment these variables if you want to set up max characters in column. (See for loop below.)
         var characterArray = [];
         let max = 25;
         */
-
-        let clipboardString = "[code]<table style='border:1px solid'>";
-
         const divInsertion = document.getElementById("resultsDiv");
         divInsertion.innerHTML = "Your Formatted SQL Results Here";
         //iterate through each row saved in the rowArray
