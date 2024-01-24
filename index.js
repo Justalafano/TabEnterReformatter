@@ -2,6 +2,8 @@ jQuery(document).ready(function ()
 {
     $("#formForUglySql").submit(function (event)
     {
+        //clear any tables already displaying on the browser page
+        $('#results1').empty();
         event.preventDefault();
 
         let uglySql = $("#usersSqlStatement").val();
